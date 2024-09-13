@@ -41,7 +41,7 @@ import perfil from './../../fixtures/perfil.json'
             cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain','Olá, eduardo.trandafilov (não é eduardo.trandafilov? Sair)')
         })
 
-        it.only('Deve fazer login com sucesso - Usando fixture',()=>{
+        it('Deve fazer login com sucesso - Usando fixture',()=>{
             cy.fixture('perfil').then(dados=>{
                 cy.get('#username').type(dados.usuario,{log:false})
                 cy.get('#password').type(dados.senha,{log:false})
@@ -50,4 +50,11 @@ import perfil from './../../fixtures/perfil.json'
        
             })
         })
+
+        it.only('Deve fazer login com sucesso - usando Comandos customizados', () => {
+            cy.login('eduardo.trandafilov@gmail.com','123')
+
+            cy.get('.woocommerce-MyAccount-content > :nth-child(2)').should('contain','Olá, eduardo.trandafilov (não é eduardo.trandafilov? Sair)')
+        });
+
     })
